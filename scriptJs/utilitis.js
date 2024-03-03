@@ -59,7 +59,7 @@ const displayWithSearch = async (category) => {
                                         <p><img class="inline " src="./images/icon/tabler-icon-clock-hour-9.png" alt="">
                                             ${post.posted_time} min</p>
                                     </div>
-                                    <button onclick="readHandler('${post.title}','${post.view_count}')" class="cursor-pointer">
+                                    <button onclick="readHandler('${post.title}',${post.view_count})" class="cursor-pointer">
                                         <img src="./images/icon/email-1.png" alt="">
                                     </button>
                                 </div>

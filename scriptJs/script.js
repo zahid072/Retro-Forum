@@ -53,12 +53,8 @@ const displayAllPost = async () => {
                                     <p><img class="inline " src="./images/icon/tabler-icon-clock-hour-9.png" alt="">
                                         ${post.posted_time} min</p>
                                 </div>
-                                <button class="cursor-pointer">
-                                    <img onclick="readHandler(${
-                                      post.view_count
-                                    }, '${
-      post.title
-    }')" src="./images/icon/email-1.png" alt="">
+                                <button onclick="readHandler('${post.title}',${post.view_count})" class="cursor-pointer">
+                                    <img src="./images/icon/email-1.png" alt="">
                                 </button>
                             </div>
                         </div>
@@ -70,7 +66,7 @@ const displayAllPost = async () => {
 };
 
 // ----------------read handler function----------------
-const readHandler = (view, title) => {
+const readHandler = ( title, view) => {
   const readContainer = document.getElementById("read-container");
   const li = document.createElement("li");
   li.innerHTML = `
