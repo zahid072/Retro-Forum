@@ -1,7 +1,9 @@
+// ---------------read counter function-------------
 const readCount = (count) => {
   const readCounter = document.getElementById("read-counter");
   readCounter.innerText = count;
 };
+// -------------------Loader function-------------------
 const loaderHandler = (loader) => {
   const loaderDiv = document.getElementById("loader");
   const allCardContainer = document.getElementById("all-card-container");
@@ -13,6 +15,7 @@ const loaderHandler = (loader) => {
     loaderDiv.classList.add("hidden");
   }
 };
+// -----------------display with search function------------------
 const displayWithSearch = async (category) => {
   const res = await fetch(
     `https://openapi.programming-hero.com/api/retro-forum/posts?category=${category}`

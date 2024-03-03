@@ -1,5 +1,5 @@
 let readCounter = 0;
-
+// ----------------display all post function-----------------
 const displayAllPost = async () => {
   const res = await fetch(
     "https://openapi.programming-hero.com/api/retro-forum/posts"
@@ -53,8 +53,12 @@ const displayAllPost = async () => {
                                     <p><img class="inline " src="./images/icon/tabler-icon-clock-hour-9.png" alt="">
                                         ${post.posted_time} min</p>
                                 </div>
-                                <button onclick="readHandler('${post.title}','${post.view_count}')" class="cursor-pointer">
-                                    <img src="./images/icon/email-1.png" alt="">
+                                <button class="cursor-pointer">
+                                    <img onclick="readHandler(${
+                                      post.view_count
+                                    }, '${
+      post.title
+    }')" src="./images/icon/email-1.png" alt="">
                                 </button>
                             </div>
                         </div>
@@ -65,7 +69,8 @@ const displayAllPost = async () => {
   });
 };
 
-const readHandler = (title, view) => {
+// ----------------read handler function----------------
+const readHandler = (view, title) => {
   const readContainer = document.getElementById("read-container");
   const li = document.createElement("li");
   li.innerHTML = `
@@ -78,6 +83,7 @@ const readHandler = (title, view) => {
   readCounter++;
   readCount(readCounter);
 };
+// ------------------search function-------------------
 const searchHandler = () => {
   const searchCategory = document.getElementById("search-input").value;
   const allPostContainer = document.getElementById("card-container");
@@ -89,7 +95,7 @@ const searchHandler = () => {
     alert("Please fill the input field");
   }
 };
-
+// -------------------display latest post-------------------
 const displayLatestPost = async () => {
   const res = await fetch(
     "https://openapi.programming-hero.com/api/retro-forum/latest-posts"
