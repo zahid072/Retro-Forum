@@ -94,6 +94,7 @@ const searchHandler = () => {
   } else {
     alert("Please fill the input field");
   }
+  document.getElementById("search-input").value="";
 };
 // -------------------display latest post-------------------
 const displayLatestPost = async () => {
