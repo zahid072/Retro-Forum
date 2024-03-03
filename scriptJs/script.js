@@ -53,11 +53,9 @@ const displayAllPost = async () => {
                                     <p><img class="inline " src="./images/icon/tabler-icon-clock-hour-9.png" alt="">
                                         ${post.posted_time} min</p>
                                 </div>
-                                <div onclick="readHandler('${post.title}','${
-      post.view_count
-    }')" class="cursor-pointer">
+                                <button onclick="readHandler('${post.title}','${post.view_count}')" class="cursor-pointer">
                                     <img src="./images/icon/email-1.png" alt="">
-                                </div>
+                                </button>
                             </div>
                         </div>
         `;
@@ -81,15 +79,52 @@ const readHandler = (title, view) => {
   readCount(readCounter);
 };
 const searchHandler = () => {
-  loaderHandler(true);
   const searchCategory = document.getElementById("search-input").value;
   const allPostContainer = document.getElementById("card-container");
-  allPostContainer.innerHTML = "";
   if (searchCategory) {
+    loaderHandler(true);
+    allPostContainer.innerHTML = "";
     displayWithSearch(searchCategory);
   } else {
     alert("Please fill the input field");
   }
 };
 
+const displayLatestPost = async () => {
+  const res = await fetch(
+    "https://openapi.programming-hero.com/api/retro-forum/latest-posts"
+  );
+  let data = await res.json();
+  const latestPostContainer = document.getElementById("latest-post-container");
+  data.forEach((post) => {
+    let designation = post.author.designation
+      ? post.author.designation
+      : "Unknown";
+    let publishDate = post.author.posted_date
+      ? post.author.posted_date
+      : "No Publish Date";
+    const div = document.createElement("div");
+    div.classList.add("card", "md:w-96", "p-5", "bg-base-100", "shadow-xl");
+    div.innerHTML = `
+            <figure><img src="${post.cover_image}"
+            alt="Shoes" /></figure>
+       <div class="mt-5 space-y-5">
+            <p><img src="./images/icon/calender.png" class="inline" alt=""> ${publishDate}</p>
+             <h2 class="card-title">
+               ${post.title}
+            </h2>
+             <p>${post.description}</p>
+             <div class="flex gap-4 items-center">
+              <img class="size-16 rounded-full" src="${post.profile_image}" alt="hello">
+              <div class="">
+                <h2 class="font-bold">${post.author.name}</h2>
+                <p>${designation}</p>
+              </div>
+            </div>
+        </div>
+            `;
+    latestPostContainer.appendChild(div);
+  });
+};
+displayLatestPost();
 displayAllPost();
