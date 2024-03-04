@@ -24,7 +24,7 @@ const displayWithSearch = async (category) => {
   const allCardContainer = document.getElementById("all-card-container");
   const noPostContainer = document.getElementById("no-post-container");
   const allPostContainer = document.getElementById("card-container");
-  if (data.posts.length>0) {
+  if (data.posts.length > 0) {
     data.posts.forEach((post) => {
       let div = document.createElement("div");
       div.classList.add(
@@ -66,9 +66,11 @@ const displayWithSearch = async (category) => {
                             </div>
             `;
       allPostContainer.appendChild(div);
-      loaderHandler(false);
-      allCardContainer.classList.remove("hidden");
-      noPostContainer.classList.add("hidden");
+      setTimeout(() => {
+        loaderHandler(false);
+        allCardContainer.classList.remove("hidden");
+        noPostContainer.classList.add("hidden");
+      }, 2000);
     });
   } else {
     document.getElementById("all-card-container").classList.add("hidden");
@@ -79,7 +81,9 @@ const displayWithSearch = async (category) => {
          <h1 class="inline ml-4 text-3xl text-red-400 font-extrabold">No post found!!! </h1></div>
       `;
     }
-    noPostContainer.classList.remove("hidden");
-    document.getElementById("loader").classList.add("hidden");
+    setTimeout(() => {
+      noPostContainer.classList.remove("hidden");
+      document.getElementById("loader").classList.add("hidden");
+    }, 2000);
   }
 };

@@ -60,8 +60,10 @@ const displayAllPost = async () => {
                         </div>
         `;
     allPostContainer.appendChild(div);
-    loaderHandler(false);
-    allCardContainer.classList.remove("hidden");
+    setTimeout(() => {
+      loaderHandler(false);
+      allCardContainer.classList.remove("hidden");
+    }, 2000);
   });
 };
 
@@ -81,8 +83,10 @@ const readHandler = ( title, view) => {
 };
 // ------------------search function-------------------
 const searchHandler = () => {
+  const noPostContainer = document.getElementById("no-post-container");
   const searchCategory = document.getElementById("search-input").value;
   const allPostContainer = document.getElementById("card-container");
+  noPostContainer.classList.add("hidden");
   if (searchCategory) {
     loaderHandler(true);
     allPostContainer.innerHTML = "";
